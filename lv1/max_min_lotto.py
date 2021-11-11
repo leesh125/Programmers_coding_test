@@ -1,5 +1,5 @@
 # My turn
-def solution(lottos, win_nums):
+def solution1(lottos, win_nums):
     i = 0
     count = 0
     z_count = 0
@@ -33,10 +33,10 @@ def solution(lottos, win_nums):
 
     return answer
 
-print(solution([44,1,0,0,31,25], [31,10,45,1,6,19]))
+print(solution1([44,1,0,0,31,25], [31,10,45,1,6,19]))
 
 # Good turn
-def solution(lottos, win_nums):
+def solution2(lottos, win_nums):
 
     rank=[6,6,5,4,3,2,1]
 
@@ -47,4 +47,5 @@ def solution(lottos, win_nums):
             ans += 1
     return rank[cnt_0 + ans],rank[ans]
 
+print(solution2([44,1,0,0,31,25], [31,10,45,1,6,19]))
 
