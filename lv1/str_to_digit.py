@@ -51,3 +51,4 @@ def solution(s):
         s = s.replace(words[i], str(i))
 
     return int(s)
+
