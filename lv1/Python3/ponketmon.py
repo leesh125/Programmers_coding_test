@@ -3,9 +3,6 @@ def solution(nums):
     s_nums = set(nums)
     dic_nums = dict.fromkeys(s_nums, 0)
 
-    for i in dic_nums:
-        dic_nums[i] = nums.count(i)
-
     if len(dic_nums) >= len(nums)/2:
         answer = int(len(nums)/2)
     elif len(dic_nums) == 1:
