@@ -1,0 +1,23 @@
+SELECT ANIMAL_ID, NAME, TO_CHAR(DATETIME, 'YYYY-MM-DD') AS 날짜
+  FROM ANIMAL_INS
+ ORDER BY ANIMAL_ID
+
+
+-- Table
+ANIMAL_ID	ANIMAL_TYPE	DATETIME	INTAKE_CONDITION	NAME	SEX_UPON_INTAKE
+A349996	Cat	2018-01-22 14:32:00	Normal	Sugar	Neutered Male
+A350276	Cat	2017-08-13 13:50:00	Normal	Jewel	Spayed Female
+A350375	Cat	2017-03-06 15:01:00	Normal	Meo	Neutered Male
+A352555	Dog	2014-08-08 04:20:00	Normal	Harley	Spayed Female
+A352713	Cat	2017-04-13 16:29:00	Normal	Gia	Spayed Female
+
+-- Question
+각 동물의 아이디와 이름, 들어온 날짜1를 조회, 이때 결과는 아이디 순으로 조회
+
+-- Result
+ANIMAL_ID	NAME	날짜
+A349996	Sugar	2018-01-22
+A350276	Jewel	2017-08-13
+A350375	Meo	2017-03-06
+A352555	Harley	2014-08-08
+A352713	Gia	2017-04-13
