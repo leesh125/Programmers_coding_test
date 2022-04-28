@@ -1,45 +1,22 @@
-from collections import deque
 def solution(arr):
-    answer = []
-    len_arr = len(arr)
-    len_tmp = len_arr
-    zero_cnt, one_cnt = 0,0
-
-    def check(start_row,end_row,start_col,end_col):
-        if end_row-start_row == end_col-start_col == 1:
-            return True
-        for i in range(start_row,end_row):
-            if sum(arr[i][start_col:end_col]) not in [0,end_col-start_col]:
-                return False
-        return True
-
-    q = deque([(0,len_arr,0,len_arr)])
-    
-    while q:
-        start_row,end_row,start_col,end_col = q.popleft()
-        if check(start_row,end_row,start_col,end_col):
-            
-            if arr[start_row][start_col] in [0,1]:
-                print(start_row,end_row,start_col,end_col)
-                if arr[start_row][start_col] == 0:
-                    zero_cnt += 1
-                elif arr[start_row][start_col] == 1:
-                    one_cnt += 1
-            for i in range(start_row,end_row):
-                for j in range(start_col,end_col):
-                    arr[i][j] = -10000
-        else:
-            len_tmp //= 2
-            if len_tmp != 0:
-                for i in range(start_row,len_arr,len_tmp):
-                    for j in range(start_col,len_arr,len_tmp):
-                        q.append((i,i+len_tmp,j,j+len_tmp))
-        
-    print(zero_cnt,one_cnt)
-    
-    
+    global answer # 전역 변수 선언
+    answer = [0,0] # [0의 count, 1의 count]
+    quad(arr, answer, len(arr)) # 처음 배열, 처음 x와 y의 좌표, 현재 배열의 길이
     return answer
 
+def quad(arr, s, n): # 쿼드 분할
+    x, y, tg = s[0],s[1],arr[s[0]][s[1]] # x 좌표, y 좌표, 현재 arr[x][y] 안에 값
+
+    for i in range(n): # 매개변수 n(분할 길이) 만큼 돌기, n이 1이라면 if문 수행하지 않고 넘어감
+        for j in range(n):
+            if arr[x+i][y+j] != tg: # 처음값과 다르다면
+                # 배열, 분할된 사각형 x,y 좌표만큼 재귀, 길이 // 2
+                quad(arr, [x,y], n//2) 
+                quad(arr, [x,y+n//2], n//2)
+                quad(arr, [x+n//2,y], n//2)
+                quad(arr, [x+n//2,y+n//2], n//2)
+                return # 분할이 안되었다면 해당 사각형 순회를 멈춤
+    answer[tg] += 1 # if 문을 무사히 넘겼다면(현재 사각형이 모두 같은 값) 현재 사각형의 처음 좌표값 비교후 답 배열에 +1
 #solution([[1,1,0,0],[1,0,0,0],[1,0,0,1],[1,1,1,1]])
 
-solution([[1,1,1,1,1,1,1,1],[0,1,1,1,1,1,1,1],[0,0,0,0,1,1,1,1],[0,1,0,0,1,1,1,1],[0,0,0,0,0,0,1,1],[0,0,0,0,0,0,0,1],[0,0,0,0,1,0,0,1],[0,0,0,0,1,1,1,1]])
+print(solution([[1,1,1,1,1,1,1,1],[0,1,1,1,1,1,1,1],[0,0,0,0,1,1,1,1],[0,1,0,0,1,1,1,1],[0,0,0,0,0,0,1,1],[0,0,0,0,0,0,0,1],[0,0,0,0,1,0,0,1],[0,0,0,0,1,1,1,1]]))
