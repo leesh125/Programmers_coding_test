@@ -1,37 +1,31 @@
-import re
-
 def solution(emails):
     answer = 0
-    
+
     for email in emails:
         ans = 0
         flag = True
-
-        if email[-4:] not in ['.com', '.net', '.org'] or 'a'>email[-5] or 'z'<email[-5]:
+        stack = []
+        
+        if email[-4:] not in ['.com', '.net', '.org'] or 'a'>email[-5] and email[-5]>'z':
             continue
         
         for e in email[:-4]:
             if e == '@':
                 ans += 1
-
             if ans == 0:
-                if 'a' <= e <= 'z' or e =='.':
-                    flag = True
+                if 'a' <= e <= 'z' or e == '.':
+                    stack.append(e)
                 else:
                     flag = False
+                    break
             elif ans == 1:
                 if 'a' <= e <= 'z':
-                    flag = True
-                else:
-                    flag = False
-                
-            if flag == False:
+                    continue
+            else:
+                flag = False
                 break
-
-        if flag and ans == 1:
-            answer += 1
-
+            
+        if flag and ans == 1 and len(stack) != 0:
+            answer+=1
     return answer
-
-print(solution(["a@d.com"]))
-print(solution(["abc.def@x.com", "abc", "abc@defx", "abc@defx.xyz"]))
+print(solution(['.@.com']))
