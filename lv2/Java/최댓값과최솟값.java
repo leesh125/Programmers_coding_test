@@ -1,6 +1,6 @@
-package skillCheck.lv2;
+package lv2.Java;
 
-class Solution1 {
+public class 최댓값과최솟값 {
     public String solution(String s) {
         StringBuilder sb = new StringBuilder();
         int min = Integer.MAX_VALUE;

@@ -1,4 +1,4 @@
-package Programmers_coding_test.lv2.Java;
+package lv2.Java;
 
 public class TakeGroupPhoto {
     static String[] names = {"A", "C", "F", "J", "M", "N", "R", "T"}; // 프렌즈들

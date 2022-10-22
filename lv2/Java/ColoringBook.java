@@ -1,4 +1,4 @@
-package Programmers_coding_test.lv2.Java;
+package lv2.Java;
 
 import java.util.*;
 
