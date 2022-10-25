@@ -1,5 +1,8 @@
 package lv2.Java;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class 카펫 {
   class Pos{
 		public int width;
